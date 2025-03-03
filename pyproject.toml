@@ -1,0 +1,11 @@
+[project]
+name = "langchain-moss"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "click>=8.1.8",
+    "ghostos-moss>=0.2.0",
+    "langchain-core>=0.3.40",
+]
