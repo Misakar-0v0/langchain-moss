@@ -1,7 +1,7 @@
 from typing import Optional, Dict, Any, List
 from ghostos_container import Container, Provider, provide
 from ghostos_moss import (
-    DefaultMOSSProvider, DefaultModulesProvider, MossCompiler, MossRuntime,
+    DefaultMOSSProvider, MossCompiler, MossRuntime,
     PyContext,
 )
 
@@ -11,7 +11,7 @@ __all__ = [
     'compile_moss_runtime',
     'get_moss_compiler',
     'bootstrap_container',
-    'Container', 'Provider', provide,
+    'Container', 'Provider', 'provide',
 
 ]
 
@@ -21,8 +21,7 @@ _container: Optional[Container] = None
 def get_container() -> Container:
     global _container
     if _container is None:
-        container = Container("langchain-moss")
-        container.register(DefaultModulesProvider())
+        container = Container(name="langchain-moss")
         container.register(DefaultMOSSProvider())
         _container = container
         _container.bootstrap()
