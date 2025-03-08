@@ -1,11 +1,23 @@
 [project]
-name = "langchain-moss"
+name = "langchain-moss-monorepo"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "click>=8.1.8",
-    "ghostos-moss>=0.2.0",
-    "langchain-core>=0.3.40",
+    "httpx[socks]>=0.28.1",
+    "langchain>=0.3.19",
+    "langchain-community>=0.3.18",
+    "langchain-moss",
+    "langchain-openai>=0.3.7",
+    "langgraph>=0.3.5",
+    "streamlit>=1.43.1",
 ]
+
+
+
+[tool.uv.workspace]
+members = ["langchain_moss"]
+
+[tool.uv.sources]
+langchain-moss = { workspace = true }
