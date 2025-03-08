@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
-from typing import Union
+from typing import Union, List, Optional
 from langchain_core.tools import BaseTool, tool
 from ghostos_moss import MossRuntime, PyContext
+from ghostos_container import Provider
 from langchain_moss.facade import compile_moss_runtime
 
 MOSS_INTRODUCTION = """
@@ -170,11 +171,19 @@ class MossAction(ABC):
 
 class DefaultMossAction(MossAction):
 
-    def __init__(self, modulename: str):
+    def __init__(
+            self,
+            modulename: str,
+            providers: Optional[List[Provider]] = None,
+    ):
         self.modulename = modulename
+        self.providers = providers
 
     def get_runtime(self) -> MossRuntime:
-        return compile_moss_runtime(self.modulename)
+        return compile_moss_runtime(
+            self.modulename,
+            providers=self.providers
+        )
 
     def reflect_injections_info(self, injections: dict) -> str:
         return ""
